@@ -36,6 +36,18 @@ public class GlobalExceptionHandler
         return ResponseEntity.status(status).body(body);
     }
 
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ErrorResponse> handleValidation(MethodArgumentNotValidException ex) 
+    {
+        String details = ex.getBindingResult().getFieldErrors().stream()
+                .map(error -> error.getField() + ": " + error.getDefaultMessage())
+                .collect(Collectors.joining("; "));
+
+        InvalidInputException appEx = new InvalidInputException("Datos inválidos: " + details);
+        ErrorResponse body = buildEnrichedErrorResponse(appEx);
+        return ResponseEntity.badRequest().body(body);
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGenericException(Exception ex) 
     {
