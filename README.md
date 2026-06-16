@@ -15,6 +15,7 @@ Registra automáticamente un `@RestControllerAdvice` que convierte tus `AppExcep
     <artifactId>roony-error-spring</artifactId>
     <version>1.0.0</version>
 </dependency>
+```
 
 ## Configuración
 La integración es automática. Al añadir la dependencia, Spring Boot descubre el GlobalExceptionHandler y lo registra sin necesidad de configuración adicional.
