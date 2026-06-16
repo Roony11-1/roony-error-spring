@@ -13,7 +13,7 @@ Registra automáticamente un `@RestControllerAdvice` que convierte tus `AppExcep
 <dependency>
     <groupId>io.github.roony11-1</groupId>
     <artifactId>roony-error-spring</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
