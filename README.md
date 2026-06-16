@@ -17,6 +17,30 @@ Registra automáticamente un `@RestControllerAdvice` que convierte tus `AppExcep
 </dependency>
 ```
 
+O, si usas el BOM del ecosistema:
+
+```xml
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>io.github.roony11-1</groupId>
+            <artifactId>roony-bom</artifactId>
+            <version>1.0.0</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+
+<dependencies>
+    <dependency>
+        <groupId>io.github.roony11-1</groupId>
+        <artifactId>roony-error-spring</artifactId>
+        <!-- sin versión: la hereda del BOM -->
+    </dependency>
+</dependencies>
+```
+
 ## Configuración
 La integración es automática. Al añadir la dependencia, Spring Boot descubre el GlobalExceptionHandler y lo registra sin necesidad de configuración adicional.
 
