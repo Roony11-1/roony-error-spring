@@ -1,16 +1,21 @@
 package io.github.roony11_1.error.spring;
 
 import jakarta.servlet.http.HttpServletRequest;
+
+import java.util.stream.Collectors;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import io.github.roony11_1.error.core.ErrorHandler;
 import io.github.roony11_1.error.core.ErrorResponse;
 import io.github.roony11_1.error.core.exceptions.AppException;
+import io.github.roony11_1.error.core.exceptions.InvalidInputException;
 import io.github.roony11_1.error.rest.HttpStatusRegistry;
 
 @RestControllerAdvice
