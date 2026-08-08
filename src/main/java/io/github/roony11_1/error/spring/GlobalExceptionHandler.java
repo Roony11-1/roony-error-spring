@@ -7,10 +7,15 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import io.github.roony11_1.error.core.ErrorHandler;
 import io.github.roony11_1.error.core.ErrorResponse;
@@ -51,6 +56,35 @@ public class GlobalExceptionHandler
         InvalidInputException appEx = new InvalidInputException("Datos inválidos: " + details);
         ErrorResponse body = buildEnrichedErrorResponse(appEx);
         return ResponseEntity.badRequest().body(body);
+    }
+
+    @ExceptionHandler({
+            MethodArgumentTypeMismatchException.class,
+            HttpMessageNotReadableException.class
+    })
+    public ResponseEntity<ErrorResponse> handleBadRequest(Exception ex) 
+    {
+        InvalidInputException appEx = new InvalidInputException("Solicitud inválida: " + ex.getMessage());
+        ErrorResponse body = buildEnrichedErrorResponse(appEx);
+        return ResponseEntity.badRequest().body(body);
+    }
+
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    public ResponseEntity<ErrorResponse> handleMethodNotAllowed(HttpRequestMethodNotSupportedException ex) 
+    {
+        ErrorResponse body = buildEnrichedErrorResponse(ex);
+        body.setCode("HTTP-405");
+        body.setMessage("Método HTTP no soportado: " + ex.getMethod());
+        return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).body(body);
+    }
+
+    @ExceptionHandler(NoResourceFoundException.class)
+    public ResponseEntity<ErrorResponse> handleNotFound(NoResourceFoundException ex) 
+    {
+        ErrorResponse body = buildEnrichedErrorResponse(ex);
+        body.setCode("HTTP-404");
+        body.setMessage("Recurso no encontrado: " + ex.getResourcePath());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(body);
     }
 
     @ExceptionHandler(Exception.class)
