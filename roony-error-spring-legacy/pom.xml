@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.github.roony11-1</groupId>
+    <artifactId>roony-error-spring</artifactId>
+    <version>2.0.0</version>
+    <packaging>pom</packaging>
+
+    <name>roony-error-spring</name>
+    <description>Marcador de migración del antiguo roony-error-spring</description>
+    <url>https://github.com/roony11-1/roony-error-spring</url>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://opensource.org/licenses/MIT</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Roony11-1</name>
+            <email>eltheasasin@gmail.com</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/roony11-1/roony-error-spring.git</connection>
+        <developerConnection>scm:git:ssh://github.com:roony11-1/roony-error-spring.git</developerConnection>
+        <url>https://github.com/roony11-1/roony-error-spring</url>
+    </scm>
+
+    <distributionManagement>
+        <relocation>
+            <groupId>io.github.roony11-1</groupId>
+            <artifactId>roony-error-spring-starter</artifactId>
+            <version>2.0.0</version>
+            <message>
+                roony-error-spring se ha dividido en -spring-core, -spring-security
+                y -spring-starter. Migra a -spring-starter y añade -spring-security
+                si usas Spring Security.
+            </message>
+        </relocation>
+    </distributionManagement>
+</project>
