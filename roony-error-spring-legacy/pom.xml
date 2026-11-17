@@ -6,12 +6,16 @@
 
     <groupId>io.github.roony11-1</groupId>
     <artifactId>roony-error-spring</artifactId>
-    <version>2.0.0</version>
+    <version>2.0.1</version>
     <packaging>pom</packaging>
 
     <name>roony-error-spring</name>
     <description>Marcador de migración del antiguo roony-error-spring</description>
     <url>https://github.com/roony11-1/roony-error-spring</url>
+
+    <properties>
+        <maven.deploy.skip>true</maven.deploy.skip>
+    </properties>
 
     <licenses>
         <license>
