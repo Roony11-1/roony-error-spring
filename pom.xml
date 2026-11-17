@@ -40,12 +40,6 @@
                 <scope>import</scope>
             </dependency>
 
-            <!-- Jakarta Validation -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-validation</artifactId>
-            </dependency>
-
             <!-- Roony Error -->
             <dependency>
                 <groupId>io.github.roony11-1</groupId>

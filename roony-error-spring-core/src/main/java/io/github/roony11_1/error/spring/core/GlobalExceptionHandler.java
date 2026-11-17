@@ -2,7 +2,6 @@
 package io.github.roony11_1.error.spring.core;
 
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.validation.ConstraintViolationException;
 
 import java.net.URI;
 import java.util.List;
@@ -67,23 +66,6 @@ public class GlobalExceptionHandler
                 .getFieldErrors()
                 .stream()
                 .map(error -> error.getField() + ": " + error.getDefaultMessage())
-                .toList();
-
-        InvalidInputException appEx = new InvalidInputException(VALIDATION_ERROR);
-
-        ErrorInfo info = errorHandler.toErrorInfo(appEx)
-                .withError(errors);
-
-        return badRequest(info);
-    }
-
-    @ExceptionHandler(ConstraintViolationException.class)
-    public ResponseEntity<ProblemDetail> handleConstraintViolation(
-            ConstraintViolationException ex)
-    {
-        List<String> errors = ex.getConstraintViolations()
-                .stream()
-                .map(error -> error.getPropertyPath() + ": " + error.getMessage())
                 .toList();
 
         InvalidInputException appEx = new InvalidInputException(VALIDATION_ERROR);
